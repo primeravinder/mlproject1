@@ -36,7 +36,7 @@ class ModelTrainer:
                 'RandomForestRegressor': RandomForestRegressor(),
                 'GradientBoostingRegressor': GradientBoostingRegressor(),
                 'AdaBoostRegressor': AdaBoostRegressor(),
-                'XGBRegressor': XGBRegressor(eval_metric='logloss'),
+                'XGBRegressor': XGBRegressor(eval_metric='logloss',verbose=0),
                 'CatBoostRegressor': CatBoostRegressor(verbose=0)
             }
 
@@ -63,7 +63,8 @@ class ModelTrainer:
                 "LinearRegression":{},
                 "XGBRegressor":{
                     'learning_rate':[.1,.01,.05,.001],
-                    'n_estimators': [8,16,32,64,128,256]
+                    'n_estimators': [8,16,32,64,128,256],
+
                 },
                 "CatBoostRegressor":{
                     'depth': [6,8,10],
@@ -74,13 +75,6 @@ class ModelTrainer:
                     'learning_rate':[.1,.01,0.5,.001],
                     # 'loss':['linear','square','exponential'],
                     'n_estimators': [8,16,32,64,128,256]
-                },
-                "XGBRegressor" : {
-                    "n_estimators": [100, 200, 300, 500],
-                    "learning_rate": [0.01, 0.05, 0.1, 0.2],
-                    "max_depth": [3, 5, 7, 10],
-                    "booster": ["gbtree", "gblinear", "dart"],
-                    # "early_stopping_rounds": [10]
                 }
                 
             }
