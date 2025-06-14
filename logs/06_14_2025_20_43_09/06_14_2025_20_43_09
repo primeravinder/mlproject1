@@ -9,3 +9,5 @@
 [2025-06-14 20:43:09,512] 87 root - INFO - Applying preprocessing object on training dataframe and testing dataframe.
 [2025-06-14 20:43:09,520] 99 root - INFO - Saved preprocessing object.
 [2025-06-14 20:43:09,526] 27 root - INFO - Splitting training and testing data
+[2025-06-14 20:59:11,421] 42 root - INFO - Model Report Sent back to the model trainer
+[2025-06-14 20:59:11,422] 102 root - INFO - Best model found: XGBRegressor with score: 0.8805235549254927
