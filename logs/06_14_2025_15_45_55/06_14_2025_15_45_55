@@ -1,6 +1,0 @@
-[2025-06-14 15:45:57,603] 23 root - INFO - Entered the Data Ingestion Process.
-[2025-06-14 15:45:57,607] 26 root - INFO - Read the dataset as dataframe.
-[2025-06-14 15:45:57,611] 31 root - INFO - Train test split initiated.
-[2025-06-14 15:45:57,616] 36 root - INFO - Ingestion of Data completed successfully.
-[2025-06-14 15:45:57,618] 72 root - INFO - read train and test data completed.
-[2025-06-14 15:45:57,618] 74 root - INFO - obtaining preprocesssor object.

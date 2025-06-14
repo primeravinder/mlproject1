@@ -1,0 +1,9 @@
+[2025-06-14 16:23:21,061] 23 root - INFO - Entered the Data Ingestion Process.
+[2025-06-14 16:23:21,064] 26 root - INFO - Read the dataset as dataframe.
+[2025-06-14 16:23:21,066] 31 root - INFO - Train test split initiated.
+[2025-06-14 16:23:21,072] 36 root - INFO - Ingestion of Data completed successfully.
+[2025-06-14 16:23:21,073] 72 root - INFO - read train and test data completed.
+[2025-06-14 16:23:21,073] 74 root - INFO - obtaining preprocesssor object.
+[2025-06-14 16:23:21,073] 41 root - INFO - Numercial Features Scaling completed successfully.
+[2025-06-14 16:23:21,073] 51 root - INFO - Categorical encoding completed successfully.
+[2025-06-14 16:23:21,074] 87 root - INFO - Applying preprocessing object on training dataframe and testing dataframe.
