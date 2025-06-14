@@ -1,0 +1,89 @@
+import sys
+from dataclasses import dataclass
+
+import numpy as np
+import pandas as pd
+from sklearn.compose import ColumnTransformer
+from sklearn.impute import SimpleImputer
+from sklearn.pipeline import Pipeline
+from sklearn.preprocessing import OneHotEncoder, StandardScaler
+
+from src.exception import CustomException
+from src.logger import logging
+from src.utils import save_object
+import os
+
+@dataclass
+class DataTransformationConfig:
+    preprocessor_obj_file_path = os.path.join('artifacts', 'preprocessor.pkl')
+
+class DataTransformation:
+    def __init__(self):
+        self.data_transformation_config = DataTransformationConfig()
+
+    def get_data_transformer_obj(self):
+
+        '''
+        This Method is responsible for both categorical and numerical data transformation.
+        '''
+
+        try:
+            numerical_cols = ['writing_score', 'reading_score']
+            categorical_cols = ['gender', 'race_ethnicity', 'parental_level_of_education', 'lunch', 'test_preparation_course']
+
+            numerical_pipeline = Pipeline(
+                steps=[
+                    ("imputer", SimpleImputer(strategy="median")),
+                    ("scaler", StandardScaler())
+                ]
+            )
+
+            # logging.info("Numercial Features Scaling completed successfully.")
+
+            categorical_pipeline = Pipeline(
+                steps=[
+                    ("imputer", SimpleImputer(strategy="mode")),
+                    ("one_hot_encoder", OneHotEncoder()),
+                    ("scaler", StandardScaler())
+                ]
+            )
+
+            # logging.info("Categorical encoding completed successfully.")
+
+            preprocessor = ColumnTransformer(
+                [
+                    ("numerical_pipeline", numerical_pipeline, numerical_cols),
+                    ("categorical_pipeline", categorical_pipeline, categorical_cols)
+                ]
+            )
+
+
+            return preprocessor
+
+        except Exception as e:
+            raise CustomException(e, sys)
+
+
+    def initiate_data_transformation(self, train_path, test_path):
+        try:
+            train_df = pd.read_csv(train_path)
+            test_df = pd.read_csv(test_path)
+
+            logging.info("read train and test data completed.")
+
+            logging.info("obtaining preprocesssor object.")
+
+            preprocessing_obj = self.get_data_transformer_obj()
+            target_col_name = "math_score"
+            numerical_cols = ['writing_score', 'reading_score']
+            # categorical_cols = ['gender', 'race_ethnicity', 'parental_level_of_education', 'lunch', 'test_preparation_course']
+
+            input_features_train_df = train_df.drop(columns=[target_col_name], axis=1)
+
+            save_object(
+                file_path = self.data_transformation_config.preprocessor_obj_file_path,
+                obj=preprocessing_obj
+            )
+            
+        except Exception as e:
+            raise CustomException(e, sys)
